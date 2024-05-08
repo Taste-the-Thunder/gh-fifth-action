@@ -90,3 +90,17 @@ on the `build` jobs you can see
 ```
 
 `id: publish` is id:key define, it's name is up to user, `find dist/assets/*js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'` use to fetch the file name, `script-file={}` the first is variable and other thing is use to fetch, that can be anything like string or array, `>> $GITHUB_OUTPUT` in that pass the file name to globle output variable.
+
+
+### Cache
+
+In this project it is use to added on node_module 
+```
+    - name: cache Dependancy
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: desp-node-modules-${{ hashFiles('**/package-lock.json') }}
+```
+
+user `actions/cache@v3` we can cache the nodules, `path: ~/.npm` is use for if you have any command fire useing npm that will auto added on cache, `key: desp-node-modules-${{ hashFiles('**/package-lock.json') }}` in this dynamic file name created using `haseFile()` so if anytime package updated that time only it generate new cache
