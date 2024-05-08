@@ -20,3 +20,15 @@ EX multiple folder
             dist
             package.json
 ```
+
+### To Download Artifacts
+
+Ex:
+```
+- name: Get Build Artifects
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+      - name: Output content
+        run: ls
+```
